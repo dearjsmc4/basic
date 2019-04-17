@@ -26,15 +26,6 @@ width, height 를 가지고 요소의 크기를 결정하려면 `인라인블록
 - line-height: 줄 높이를 결정한다. height 와 똑같이 주면 가운데에 요소를 잡아줄 수 있다.  
 - z-index : 수치가 높을수록 위에 놓인다.  
 
-Word-spacing.
-Letter-spacing.
-Word-break
-Text-indent : 시작점끝점이 있어야 쓸수잇음. 인라인블록이나 블록이 돼야 동작함.
-Line-height
-Text-transform = 대소문자
-White-space
-Text-decoration
-Font-size
 
 ### font-size  
 기본단위: px, pt, in, cm, mm  
