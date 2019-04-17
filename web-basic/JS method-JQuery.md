@@ -14,7 +14,7 @@
 - window.scrollTo(x,y) – 지정한 위치로 스크롤 움직이기  
 - window.scrollBy(x,y) – 현재위치에서 얼마나 움직일지 설정(위나 왼쪽으로가면 마이너스)  
 
-**타이머 만들기**
+**타이머 만들기**  
 `interval = window.setInterval(function() {console.log(1);}, 1000);` – 1초에 한번씩 1을 출력  
 `window.clearInterval(interval);` – 멈추기  
 
@@ -30,7 +30,7 @@
 - history.go(숫자) – 플러스/마이너스로 페이지 이동  
 
 #### Navigator  
-정보를 이용, 고객 분석에 사용한다.
+정보를 이용, 고객 분석에 사용한다.  
 - navigator.platform – 운영체제 종류 읽기  
 - navigator.userAgent – 브라우저 종류 읽기  
 - navigator.language – 언어 종류 읽기  
