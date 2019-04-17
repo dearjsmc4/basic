@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>title</title>
+    </head>
+    <body>
+        <span id="weight"></span><br>
+        <span id="height"></span><br>
+        <span id="result"></span><br>
+        <div id="level">
+
+        </div>
+        <script>
+        var yourName = prompt("이름을 입력하세요", "");
+        var yourWeight = prompt("체중을 입력하세요", "ex: 60");
+        var yourHeight = prompt("키를 입력하세요", "ex: 160");
+        var yourBmi = Number(yourWeight) / (Number(yourHeight)/100)**2;
+        // 계산 전에 미리 weight/height 를 형변환 후 단위에 맞게 조절해두는 것도 좋겠군 
+        // 대부분 수학에서 쓰는 중괄호 대괄호는 여기서 그렇게 안 쓰임
+        if (yourWeight != null){
+        document.getElementById("weight").innerHTML = yourName + "님의 체중 : " + yourWeight;
+        document.getElementById("height").innerHTML = yourName + "님의 키 : " + yourHeight;
+        document.getElementById("result").innerHTML = "BMI 계산 결과 : " + yourBmi.toFixed(1);
+        }
+        if  (yourBmi < 18.5){
+            document.getElementById("level").innerHTML = "저체중";
+        }else if(yourBmi >= 18.5 && yourBmi < 23){
+            document.getElementById("level").innerHTML = "정상체중";
+        }else{
+            document.getElementById("level").innerHTML = "과체중";
+        }
+        </script>
+    </body>
+</html>

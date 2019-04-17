@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>title</title>
+        
+    </head>
+    <body>
+        <div id="demo">
+
+        </div>
+        <span id="number1"></span>+<span id="number2"></span>=<span id="number3"></span>
+        <script type="text/javascript">
+            // 한 줄 주석
+            /* 여러 줄 
+            주석 */
+            var person = prompt("Please enter your name", "ex)Harry Potter");
+    
+            if (person != null) {
+                document.getElementById("demo").innerHTML =
+                "Hello, " + person + "! Have a nice day!";
+            }
+
+            var number1  = prompt("첫번째 숫자 입력", "");
+            var number2 = prompt("두번째 숫자 입력", "");
+            document.getElementById("number1").innerHTML = number1;
+            document.getElementById("number2").innerHTML = number2;
+            document.getElementById("number3").innerHTML = Number(number1) + Number(number2);
+
+            </script>
+    </body>
+</html>

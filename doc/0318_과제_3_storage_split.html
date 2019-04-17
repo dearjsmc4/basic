@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <title>회원가입 폼</title>
+        <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <style>
+            #wrapper{
+                width: 400px;
+                padding: 80px;
+                margin: auto;
+            }
+            input{
+                margin: 10px 0;
+            }
+        </style>
+    </head>
+    <body>
+    <div id="wrapper">
+        <h2>회원가입</h2>
+        <form action="#" id="submit">
+        <label> 아이디 : 
+        <input type="text" name="id" placeholder="아이디 입력" id="id"></label><br>
+        <label> 비밀번호 : 
+        <input type="password" name="pw" placeholder="비밀번호 입력" id="pw"></label><br>
+        <label> 이름 : 
+        <input type="text" name="name" placeholder="이름 입력" id="name"></label><br>
+        <label> 이메일 주소 : 
+        <input type="email" name="email" placeholder="이메일 주소 입력" id="email"></label><br>
+        <label> 집주소 : 
+        <input type="text" name="address" placeholder="도로명 주소 입력" id="address">
+        <input type="button" id="zipcode_search" value="우편번호찾기"></label><br>
+        <input type="button" value="회원가입하기" id="join">
+        <input type="button" value="정보가져오기" id="get_form">
+        </form>
+    </div>
+        <script>
+            $(function(){
+                $("#zipcode_search").click(function(){
+                    new daum.Postcode({
+                    oncomplete: function(data) {
+                    $("#address").val(data.address);
+                    }
+            }).open();
+        })
+    
+            $("#join").click(function(){
+                var id = document.getElementById("id").value;
+                var pw = document.getElementById("pw").value;
+                var name = document.getElementById("name").value;
+                var email = document.getElementById("email").value;
+                var address = document.getElementById("address").value;
+                
+                // 아이디 유효검사
+                if(id == ""){
+                    alert("아이디를 입력해주세요.");
+                    $("#id").focus();
+                    return false;
+                }
+                var idReg = /^[a-z]+[a-z0-9]{4,14}$/g;
+                var checkNumber = id.search(/[0-9]/g);
+                var checkEnglish = id.search(/[a-z]/ig);
+
+                if(!idReg.test(id)){
+                    alert("아이디는 영문자로 시작하는 5자 이상의 영문자 또는 숫자여야 합니다.");
+                    $("#id").focus();
+                    return false;
+                }
+                if(checkNumber<0 || checkEnglish<0){
+                    alert("아이디는 숫자와 영문자를 혼용하여야 합니다.");
+                    return false;
+                }
+
+                // 비밀번호 유효검사
+                if(pw == ""){
+                    alert("비밀번호를 입력해주세요.");
+                    $("#pw").focus();
+                    return false;
+                }
+                var pwReg = /^[a-zA-Z0-9]{7,19}$/;
+                var checkNumber = pw.search(/[0-9]/g);
+                var checkEnglish = pw.search(/[a-z]/ig);
+                if(!pwReg.test(pw)){
+                    alert("비밀번호는 숫자와 영문자 조합으로 8~20자여야 합니다.");
+                    return false;
+                }
+                if(checkNumber<0 || checkEnglish<0){
+                    alert("비밀번호는 숫자와 영문자를 혼용하여야 합니다.");
+                    return false;
+                }
+
+                // 이름 유효검사
+                var nameReg = /^[가-힣]{2,10}$/;
+                if(name == ""){
+                    alert("이름을 입력해주세요.");
+                    $("#name").focus();
+                    return false;
+                }
+                if(!nameReg.test(name)){
+                    alert("이름은 한글로 두 자 이상 입력해주세요.");
+                    return false;
+                }
+
+                // 이메일 유효검사
+                var emailReg = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
+                if(email == ""){
+                    alert("이메일 주소를 입력해주세요");
+                    $("#email").focus();
+                    return false;
+                }
+                if(!emailReg.test(email)){
+                    alert("올바른 이메일을 입력해주세요.");
+                    return false;
+                }
+
+                // 주소 유효검사
+                var addressReg = /^[가-힣\s]+[시|도|군|구\s]/;
+                if(address == ""){
+                    alert("주소를 입력해주세요.");
+                    $("#address").focus();
+                    return false;
+                }
+                if(!addressReg.test(address)){
+                    alert("주소는 도/시/군/구 중 하나를 포함해야 합니다.");
+                    return false;
+                }
+                var con = confirm("아이디 : "+id+"\n"+
+                        "비밀번호 : "+pw+"\n"+
+                        "이름 : "+name+"\n"+
+                        "이메일 주소 : "+email+"\n"+
+                        "집주소 : "+address+"\n"+
+                        "위와 같이 가입하시겠습니까?");
+                
+                if(con == false){
+                    return false;
+                }
+
+                var form_content = $("#submit").serialize();
+                localStorage.setItem("join-form", form_content);
+             
+            });
+            
+            $("#get_form").click(function(){
+                var form_content = localStorage.getItem("join-form");
+                form_content = decodeURIComponent(form_content);
+                var split_data = form_content.split("&");
+                for (var i in split_data){
+                    var content_data = split_data[i].split("=");
+                    var key = content_data[0];
+                    var data = content_data[1];
+                    $("#"+key).val(data);
+                } 
+                });
+        });
+        </script>
+    </body>
+</html>

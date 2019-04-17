@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Web Storage</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <style>
+      
+        </style>
+    </head>
+    <body>
+<form id="content_form">
+    <input type="text" name="content1" id="content1">
+    <input type="text" name="content2" id="content2">
+    <input type="text" name="content3" id="content3">
+    <button id="btn_save">Save</button>
+    <button id="btn_load">Load</button>
+</form>
+    <script type="text/javascript">
+    var storage_key = "content"
+        $(function(){
+            $("#btn_save").click(function(){
+                //폼 데이터를 문자열로 합치기
+                var form_content = $("#content_form").serialize();
+                //합친 문자열을 저장
+                localStorage.setItem(storage_key, form_content);
+                //폼 submit 이 일어나지 않게
+                return false;
+            });
+            
+            $("#btn_load").click(function(){
+            var form_content = localStorage.getItem(storage_key);
+            var split_data = form_content.split("&");
+            console.log(split_data);
+            for(var i in split_data){
+                var content_data = split_data[i].split("=");
+                console.log(content_data);
+                var key = content_data[0];
+                var data = content_data[1];
+                $("#"+key).val(data);
+            } 
+            return false; 
+            
+        });
+        });
+
+        
+    </script>
+    </body>
+</html>
