@@ -31,7 +31,7 @@ a = 0.1234512345
     - dic`[func](1,2)` = 3 (func 라는 키의 value 인 함수를 실행)  
         lambda: 함수가 위치한 메모리 주소값  
     - dic.`keys()` = dict_keys(['a', 2, 'func']) (dic 의 모든 키값을 가져오기)  
-    - dic.`items()` = dict_items([('a', 1), (2, 'two'), ('func', <function <lambda> at 0x05B738E8>)])  
+    - dic.`items()` = dict_items`([('a', 1), (2, 'two'), ('func', <function <lambda> at 0x05B738E8>)])`  
         (key와 value값이 튜플로 묶여서 나옴) -> 튜플인 이유가 있나?  
     - key_list = `list(dic.keys())` = ['a', 2, 'func'] (key만 모아서 리스트로 만들기)  
 
