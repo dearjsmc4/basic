@@ -88,7 +88,7 @@ True/false,  1/0 로 표기. -> boolean 값. Bool.
 ===, !== 는 종류까지 같은지 판별한다.  
 - 1 == true  
 true. 1은 곧 true 이다.  
-2. 1 === true  
+- 1 === true  
 false. 데이터타입이 다르다. 1은 숫자이고 true 는 불린 값이다.
 
 
