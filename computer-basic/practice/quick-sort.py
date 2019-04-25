@@ -1,5 +1,24 @@
 import random
 
+def get_middle_idx(li, start, end, mid):
+    """
+    리스트의 맨 처음 값과 중간 값, 그리고 마지막 값 중에서
+    가운데 값이 위치한 인덱스를 반환한다.
+    """
+    idx_li=[start, end, mid]
+    # idx_li.remove(max(idx_li))
+    # idx_li.remove(min(idx_li))
+    # print(idx_li[0])
+    # return idx_li[0]
+
+    if li[idx_li[0]] > li[idx_li[1]]:
+        idx_li[0], idx_li[1]=idx_li[1], idx_li[0]
+    if li[idx_li[1]] > li[idx_li[2]]:
+        idx_li[1], idx_li[2]=idx_li[2], idx_li[1]
+    if li[idx_li[0]] > li[idx_li[1]]:
+        idx_li[0], idx_li[1]=idx_li[1], idx_li[0]
+
+    return idx_li[1]
 
 def quick_sort(li, start, end):
     if start >= end:
@@ -7,7 +26,11 @@ def quick_sort(li, start, end):
 
     left = start
     right = end
-    pivot = li[(left+right)//2]
+    mid = (left+right)//2
+    mid_idx = get_middle_idx(li, start, end, mid)
+    pivot = li[mid]
+    li[mid_idx], li[mid] = li[mid], li[mid_idx]
+
 
     while left <= right:
         while li[left]<pivot:  
